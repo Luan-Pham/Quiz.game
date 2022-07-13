@@ -1,0 +1,40 @@
+* {box-sizing: border-box;}
+
+.status {display: flex;
+justify-content: space-between;
+margin: 20px;
+padding: 20px;
+background-color: gray;
+font-size: 20px;}
+
+.startBtnContainer {display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+height: 200px;
+width: 100%;
+background-color: gray;}
+
+.start-btn {height: 100px;
+width: 600px;
+color: blue;
+font-size:50px;}
+
+.bigContainer {height:500px;
+width: 100%;
+background-color: teal;
+margin-top: 30px;
+display: flex;
+justify-content: center;
+flex-direction: column;}
+
+.questClass {align-self: center;
+visibility: hidden;
+}
+
+.answer-btn {height: 60px;
+width: 600px;
+align-self: center;
+margin: 20px;
+visibility: hidden;
+}

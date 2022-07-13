@@ -8,18 +8,21 @@
     <title>Javascript Quiz</title>
 </head>
 <body>
-    <div class="Status">
-        <p>Score:</p>
-        <p>Time</p>
+    <div class="status">
+        <p id="scorecount">Score</p>
+        <p id="timer">Time</p>
     </div>
-    <section>
-        <div>Questions</div>
-        <button>Answer 1</button>
-        <button>Answer 2</button>    
-        <button>Answer 3</button>    
-        <button>Answer 4</button>        
-    </section>
+    <div class="startBtnContainer">
+        <button class="start-btn" id="start">Start Game</button>
+    </div>
+    <div class="bigContainer" id="quizContainer" >
+        <div class="questClass" id="questionText" >Question</div>
+        <button class="answer-btn" id="answer-btn1"> Answer Choice 1</button>
+        <button class="answer-btn" id="answer-btn2"> Answer Choice 2</button>
+        <button class="answer-btn" id="answer-btn3"> Answer Choice 3</button>
+        <button class="answer-btn" id="answer-btn4"> Answer Choice 4</button>
+    </div>
 
-    <script src="/Assets/script.js"></script>
+    <script src="/Assets/script2.js"></script>
 </body>
 </html>
