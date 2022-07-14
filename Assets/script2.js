@@ -9,9 +9,6 @@ var answer2 = document.getElementById("answer-btn2");
 var answer3 = document.getElementById("answer-btn3");
 var answer4 = document.getElementById("answer-btn4");
 
-let shuffledQuestions;
-let currentQuestionindex;
-
 // set variables for score
 var scoreCount = 0;
 
@@ -46,7 +43,7 @@ function randomQuestion() {
   var randomQuesti = Math.floor(Math.random() * Questions.length);
   var randomQuest = Questions[randomQuesti];
   currentQuestion = randomQuest;
-  Questions.splice(randomQuesti);
+  Questions.splice(randomQuesti, 1);
 }
 
 var currentQuestion;
