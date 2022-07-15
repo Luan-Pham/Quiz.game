@@ -50,3 +50,7 @@
   margin: 20px;
   visibility: hidden;
 }
+
+.leaderboards {
+  visibility: hidden;
+}

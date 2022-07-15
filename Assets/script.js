@@ -64,12 +64,14 @@ function inputanswer(event) {
   var answerChoice = event.target.innerText;
   if (answerChoice == currentQuestion.correctAnswer) {
     scoreCount++;
+    var finalScore = scoreCount++;
   } else {
     timerCount -= 5;
   }
   randomQuestion();
   currentQuestiontext();
   displayScore();
+  localStorage.setItem("highScore");
 }
 
 //start quiz function to invoke all other functions
@@ -80,6 +82,17 @@ function startQuiz() {
   randomQuestion();
   displayScore();
   currentQuestiontext();
+}
+//variables to create HTML elements to display scores
+const newScore = document.createElement("p");
+
+//function to end quiz
+function endQuiz() {
+  var containerChild = bigContain.children;
+  for (var i = 0; i < containerChild.length; i++) {
+    var showChild = containerChild[i];
+    showChild.setAttribute("style", "visibility: hidden");
+  }
 }
 
 //click events for each function
@@ -122,14 +135,53 @@ var Questions = [
     correctAnswer: "Boolean",
   },
   {
-    question:
-      "How many licks does it take to get to the center of a tootsie pop",
+    question: "Which javascript framework/library uses the $ symbol",
     answers: {
-      a: "75",
-      b: "1",
-      c: "23",
-      d: "8723438927",
+      a: "React",
+      b: "jQuery",
+      c: "Moment",
+      d: "Bootstrap",
     },
-    correctAnswer: "23",
+    correctAnswer: "jQuery",
+  },
+  {
+    question: "Javascript is an ______ language.",
+    answers: {
+      a: "Object-oriented",
+      b: "Object-based",
+      c: "Procedural",
+      d: "Fictional",
+    },
+    correctAnswer: "Object-oriented",
+  },
+  {
+    question: "Which of the following is used to define a variable?",
+    answers: {
+      a: "var",
+      b: "let",
+      c: "A and B",
+      d: "very",
+    },
+    correctAnswer: "A and B",
+  },
+  {
+    question: "Which of the following denotes exact equality",
+    answers: {
+      a: "=",
+      b: "==",
+      c: "===",
+      d: "!==",
+    },
+    correctAnswer: "===",
+  },
+  {
+    question: "In the setInterval function, what does in the 2nd argument",
+    answers: {
+      a: "time in seconds",
+      b: "time in hours",
+      c: "time in days",
+      d: "time in milliseconds",
+    },
+    correctAnswer: "time in milliseconds",
   },
 ];
