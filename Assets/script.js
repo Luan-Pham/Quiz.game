@@ -11,6 +11,7 @@ var answer2 = document.getElementById("answer-btn2");
 var answer3 = document.getElementById("answer-btn3");
 var answer4 = document.getElementById("answer-btn4");
 var scoreMessage = document.getElementById("finalScoreText");
+var leaderboard = document.getElementById("highestScore");
 // set variables for score
 var scoreCount = 0;
 
@@ -19,7 +20,7 @@ function displayScore() {
 }
 
 // set variables for timer
-var timerCount = 20;
+var timerCount = 30;
 var timer;
 // function for timer once quiz is started
 function startTimer() {
@@ -67,7 +68,7 @@ function inputanswer(event) {
   if (answerChoice == currentQuestion.correctAnswer) {
     scoreCount++;
   } else {
-    timerCount -= 5;
+    timerCount -= 2;
   }
   randomQuestion();
   currentQuestiontext();
@@ -87,31 +88,38 @@ function startQuiz() {
   displayScore();
   currentQuestiontext();
 }
-//variables to create HTML elements to display scores
-const newScore = document.createElement("p");
 
 //function to end quiz
 function endQuiz() {
-  var containerChild = bigContain.children;
   endtext.setAttribute("style", "visibility: visible");
-  restartButton.setAttribute("style", "visibility: visible");
+  submitButton.setAttribute("style", "visibility: visible");
+  var containerChild = bigContain.children;
   for (var i = 0; i < containerChild.length; i++) {
     var showChild = containerChild[i];
     showChild.setAttribute("style", "visibility: hidden");
   }
   var finalScore = scoreCount;
   scoreMessage.textContent = finalScore;
-  if (finalScore > highestScore)
-    var highestScore = localStorage.setItem("highscore", finalScore);
+  var leader = JSON.parse(localStorage.getItem("storageKey"));
+  leaderboard.innerText = leader;
+  console.log(leader);
 }
 
+//function to restart page and record score submission
+function refreshQuiz() {
+  startButton.setAttribute("style", "visibility: visible");
+  localStorage.setItem("storageKey", scoreCount);
+  submitButton.setAttribute("style", "visbility: hidden");
+  endtext.setAttribute("style", "visbility: hidden");
+  scoreMessage.setAttribute("style", "visbility: hidden");
+}
 //click events for each function
 startButton.addEventListener("click", startQuiz);
 answer1.addEventListener("click", inputanswer);
 answer2.addEventListener("click", inputanswer);
 answer3.addEventListener("click", inputanswer);
 answer4.addEventListener("click", inputanswer);
-submitButton.addEventListener("click", startQuiz);
+submitButton.addEventListener("click", refreshQuiz);
 
 // possible questions as an array of objects
 var Questions = [
@@ -194,5 +202,105 @@ var Questions = [
       d: "time in milliseconds",
     },
     correctAnswer: "time in milliseconds",
+  },
+  {
+    question: "Inside which HTML element do we put the JavaScript?",
+    answers: {
+      a: "<js>",
+      b: "<script>",
+      c: "<scripting>",
+      d: "<javascript<",
+    },
+    correctAnswer: "<script>",
+  },
+  {
+    question: "What is the correct JavaScript syntax to write 'Hello World'?",
+    answers: {
+      a: "response.write('Hello World')",
+      b: "'Hello World'",
+      c: "document.write('Hello World')",
+      d: "('Hello World')",
+    },
+    correctAnswer: "document.write('Hello World')",
+  },
+  {
+    question: "How do you write 'Hello World' in an alert box?",
+    answers: {
+      a: "alert('Hello World')",
+      b: "msgBox('Hello World')",
+      c: "alertBox='Hello World'",
+      d: "alertbox('Hello World')",
+    },
+    correctAnswer: "alert('Hello World')",
+  },
+  {
+    question: "How do you create a function?",
+    answers: {
+      a: "function:myFunction()",
+      b: "function=myFuction()",
+      c: "function myFunction()",
+      d: "myFunction():function",
+    },
+    correctAnswer: "function myFunction()",
+  },
+  {
+    question: "How do you call a function named 'myFunction'?",
+    answers: {
+      a: "call myFunction()",
+      b: "myFunction()",
+      c: "call function myFunction",
+      d: "Call.myFunction()",
+    },
+    correctAnswer: "myFunction()",
+  },
+  {
+    question: "How does a 'for' loop start?",
+    answers: {
+      a: "for (i = 0; i <= 5)",
+      b: "for (i = 0; i <= 5; i++)",
+      c: "for i = 1 to 5",
+      d: "for (i <=5; i++)",
+    },
+    correctAnswer: "for (i = 0; i <= 5; i++)",
+  },
+  {
+    question: "How can you add a comment in a Javascript?",
+    answers: {
+      a: "//This is a comment",
+      b: "'This is a comment",
+      c: "<!--This is a comment-->",
+      d: "#This is a comment",
+    },
+    correctAnswer: "//This is a comment",
+  },
+  {
+    question: "How do you round the number 7.25, to the near whole number?",
+    answers: {
+      a: "Math.rnd(7.25)",
+      b: "round(7.25(",
+      c: "rnd(7.25)",
+      d: "Math.round(7.25)",
+    },
+    correctAnswer: "Math.round(7.25)",
+  },
+  {
+    question: "How do you find the largest number of 2 and 4?",
+    answers: {
+      a: "Math.ceil(2,4)",
+      b: "Math.max(2,4)",
+      c: "ceil(2,4)",
+      d: "top(2,4)",
+    },
+    correctAnswer: "Math.max(2,4)",
+  },
+  {
+    question: "In Javascript, the symbols +-* and/ are:",
+    answers: {
+      a: "operators",
+      b: "expressions",
+      c: "comparison operators",
+      d: "None of the above",
+    },
+    correctAnswer: "operators",
   },
 ];

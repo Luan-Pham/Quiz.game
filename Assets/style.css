@@ -70,3 +70,9 @@
   border-radius: 10%;
   background-color: lightcoral;
 }
+
+.score-messaging {
+  align-items: flex-start;
+  width: 50%;
+  height: 100%;
+}
