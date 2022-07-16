@@ -24,8 +24,11 @@
 .start-btn {
   height: 100px;
   width: 600px;
-  color: blue;
+  color: black;
   font-size: 50px;
+  position: absolute;
+  border-radius: 10%;
+  background-color: lightcoral;
 }
 
 .bigContainer {
@@ -53,4 +56,17 @@
 
 .leaderboards {
   visibility: hidden;
+}
+
+.end-message {
+  visibility: hidden;
+}
+
+.submit-btn {
+  align-self: center;
+  visibility: hidden;
+  width: 100px;
+  height: 50px;
+  border-radius: 10%;
+  background-color: lightcoral;
 }

@@ -3,12 +3,14 @@ var score = document.getElementById("scorecount");
 var time = document.getElementById("timer");
 var bigContain = document.getElementById("quizContainer");
 var startButton = document.getElementById("start");
+var submitButton = document.getElementById("Submission");
+var endtext = document.getElementById("end-msg");
 var quest = document.getElementById("questionText");
 var answer1 = document.getElementById("answer-btn1");
 var answer2 = document.getElementById("answer-btn2");
 var answer3 = document.getElementById("answer-btn3");
 var answer4 = document.getElementById("answer-btn4");
-
+var scoreMessage = document.getElementById("finalScoreText");
 // set variables for score
 var scoreCount = 0;
 
@@ -17,7 +19,7 @@ function displayScore() {
 }
 
 // set variables for timer
-var timerCount = 60;
+var timerCount = 20;
 var timer;
 // function for timer once quiz is started
 function startTimer() {
@@ -64,14 +66,16 @@ function inputanswer(event) {
   var answerChoice = event.target.innerText;
   if (answerChoice == currentQuestion.correctAnswer) {
     scoreCount++;
-    var finalScore = scoreCount++;
   } else {
     timerCount -= 5;
   }
   randomQuestion();
   currentQuestiontext();
   displayScore();
-  localStorage.setItem("highScore");
+  if (timerCount <= 0) {
+    endQuiz();
+    timerCount = 0;
+  }
 }
 
 //start quiz function to invoke all other functions
@@ -89,10 +93,16 @@ const newScore = document.createElement("p");
 //function to end quiz
 function endQuiz() {
   var containerChild = bigContain.children;
+  endtext.setAttribute("style", "visibility: visible");
+  restartButton.setAttribute("style", "visibility: visible");
   for (var i = 0; i < containerChild.length; i++) {
     var showChild = containerChild[i];
     showChild.setAttribute("style", "visibility: hidden");
   }
+  var finalScore = scoreCount;
+  scoreMessage.textContent = finalScore;
+  if (finalScore > highestScore)
+    var highestScore = localStorage.setItem("highscore", finalScore);
 }
 
 //click events for each function
@@ -101,6 +111,7 @@ answer1.addEventListener("click", inputanswer);
 answer2.addEventListener("click", inputanswer);
 answer3.addEventListener("click", inputanswer);
 answer4.addEventListener("click", inputanswer);
+submitButton.addEventListener("click", startQuiz);
 
 // possible questions as an array of objects
 var Questions = [
@@ -175,7 +186,7 @@ var Questions = [
     correctAnswer: "===",
   },
   {
-    question: "In the setInterval function, what does in the 2nd argument",
+    question: "In the setInterval function, what appears in the 2nd argument",
     answers: {
       a: "time in seconds",
       b: "time in hours",
